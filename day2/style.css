@@ -1,0 +1,505 @@
+/* =========================================
+   QuickNotes
+   Day 2 - Web Foundations
+   ========================================= */
+
+/* ---------- Reset ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: #182230;
+  background:
+    radial-gradient(circle at top left, #e9f2ff 0, transparent 32rem),
+    #f5f7fb;
+}
+
+/* ---------- Design tokens ---------- */
+
+:root {
+  --ink: #182230;
+  --muted: #667085;
+  --primary: #3157d5;
+  --primary-dark: #2445b4;
+  --accent: #7c5cff;
+  --surface: #ffffff;
+  --soft: #eef3ff;
+  --border: #e4e8f0;
+  --shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+  --radius: 18px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  color: white;
+  text-align: center;
+  padding: 4.5rem 1.5rem 3rem;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(124, 92, 255, 0.3), transparent 25rem),
+    linear-gradient(135deg, #111827, #172554 60%, #243b83);
+}
+
+.header-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.eyebrow {
+  color: #a9bbff;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.site-header h1 span {
+  color: #91a7ff;
+}
+
+.tagline {
+  margin: 1rem 0 2rem;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+
+/* ---------- Navigation / Flexbox ---------- */
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+nav a.active {
+  background: white;
+  color: #172554;
+}
+
+nav a:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* ---------- Main ---------- */
+
+main {
+  width: min(92%, 1000px);
+  max-width: 1000px;
+  margin: 2.5rem auto;
+}
+
+.card {
+  background: var(--surface);
+  margin-bottom: 1.5rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid rgba(228, 232, 240, 0.9);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin: 0 0 1rem;
+  color: var(--ink);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.section-label {
+  color: var(--primary);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background: #31c48d;
+  box-shadow: 0 0 0 5px #e6faf3;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ---------- Notes ---------- */
+
+.note-count {
+  color: var(--muted);
+}
+
+.note-badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.notes-list {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
+  margin: 1.2rem 0 0;
+  list-style: none;
+}
+
+.notes-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafbff;
+}
+
+.note-marker {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- Forms ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+label {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d5dbe6;
+  border-radius: 11px;
+  background: #fbfcfe;
+  color: var(--ink);
+  font: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #98a2b3;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(49, 87, 213, 0.12);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+button {
+  width: fit-content;
+  padding: 0.75rem 1.15rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(49, 87, 213, 0.2);
+}
+
+button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* ---------- Steps ---------- */
+
+.steps {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* ---------- Features Grid ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.features li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 170px;
+  padding: 1.3rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #ffffff, #f7f9ff);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.features li:hover {
+  transform: translateY(-4px);
+  border-color: #c8d2ff;
+  box-shadow: 0 12px 28px rgba(31, 41, 55, 0.09);
+}
+
+.features strong {
+  color: var(--ink);
+}
+
+.features li > span:last-child {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 9px;
+  background: var(--soft);
+  color: var(--primary);
+  font-weight: 900;
+}
+
+/* ---------- Table ---------- */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+
+th {
+  background: #172554;
+  color: white;
+  font-size: 0.9rem;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8faff;
+}
+
+tbody tr:hover {
+  background: #eef3ff;
+}
+
+kbd {
+  padding: 0.25rem 0.45rem;
+  border: 1px solid #cbd5e1;
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: white;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+footer span {
+  margin: 0 0.35rem;
+  color: var(--accent);
+}
+
+/* ---------- Responsive design ---------- */
+
+@media (max-width: 600px) {
+  .site-header {
+    padding: 2.8rem 1rem 2rem;
+  }
+
+  .site-header h1 {
+    font-size: 2.7rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    padding: 0.5rem 0.8rem;
+  }
+
+  main {
+    width: 94%;
+    margin: 1.25rem auto;
+  }
+
+  .card {
+    padding: 1.2rem;
+    border-radius: 14px;
+  }
+
+  .section-heading {
+    align-items: center;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  th,
+  td {
+    padding: 0.7rem;
+  }
+
+  .steps li {
+    align-items: flex-start;
+  }
+}

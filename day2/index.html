@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="QuickNotes is a simple space for capturing ideas, reminders, and thoughts."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>QuickNotes | Capture Ideas</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <p class="eyebrow">PERSONAL KNOWLEDGE SPACE</p>
+
+        <h1>Quick<span>Notes</span></h1>
+
+        <p class="tagline">Capture ideas before they disappear.</p>
+
+        <nav aria-label="Main navigation">
+          <a href="index.html" class="active">Home</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="card note-card">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">QUICK CAPTURE</p>
+            <h2>Add a note</h2>
+          </div>
+          <span class="status-dot" aria-hidden="true"></span>
+        </div>
+
+        <form id="note-form">
+          <label for="note-input">New note</label>
+
+          <div class="input-row">
+            <input
+              type="text"
+              id="note-input"
+              name="note"
+              placeholder="Type a note..."
+            />
+            <button type="submit">Add Note</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card notes-card">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">YOUR SPACE</p>
+            <h2>Your notes</h2>
+          </div>
+
+          <span class="note-badge">02 notes</span>
+        </div>
+
+        <p id="note-count" class="note-count">You have 2 notes.</p>
+
+        <ul id="notes-list" class="notes-list">
+          <li>
+            <span class="note-marker"></span>
+            <span>Revise HTML forms</span>
+          </li>
+          <li>
+            <span class="note-marker"></span>
+            <span>Push my code to GitHub</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>QuickNotes <span>•</span> Web Foundations 2026</p>
+    </footer>
+  </body>
+</html>
+
